@@ -1,0 +1,78 @@
+using System;
+using System.Collections.Generic;
+
+namespace crud_op
+{
+    internal class Task
+    {
+        public string Title { get; set; }
+        public string Description { get; set; }
+    }
+
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            List<Task> tasks = new List<Task>(); // List to store tasks
+
+            bool exit = false;
+
+            while (!exit)
+            {
+                Console.WriteLine("Select the task:");
+                Console.WriteLine("1. Create a task");
+                Console.WriteLine("2. Read tasks");
+                Console.WriteLine("3. Update a task");
+                Console.WriteLine("4. Delete a task");
+                Console.WriteLine("5. Exit");
+
+                Console.Write("Enter your choice (1-5): ");
+                int choice = Convert.ToInt32(Console.ReadLine());
+
+                switch (choice)
+                {
+                    case 1:
+                        Console.Write("Enter task title: ");
+                        string title = Console.ReadLine();
+                        Console.Write("Enter task description: ");
+                        string description = Console.ReadLine();
+                        tasks.Add(new Task { Title = title, Description = description });
+                        Console.WriteLine("Task created successfully!");
+                        break;
+
+                    case 2:
+                        if (tasks.Count == 0)
+                        {
+                            Console.WriteLine("No tasks available.");
+                        }
+                        else
+                        {
+                            Console.WriteLine("List of tasks:");
+                            foreach (var task in tasks)
+                            {
+                                Console.WriteLine($"Title: {task.Title}, Description: {task.Description}");
+                            }
+                        }
+                        break;
+
+                    case 3:
+                        // Update task logic
+                        break;
+
+                    case 4:
+                        // Delete task logic
+                        break;
+
+                    case 5:
+                        exit = true;
+                        Console.WriteLine("Exiting the application.");
+                        break;
+
+                    default:
+                        Console.WriteLine("Invalid choice. Please enter a number between 1 and 5.");
+                        break;
+                }
+            }
+        }
+    }
+}
