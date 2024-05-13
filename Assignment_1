@@ -5,8 +5,8 @@ namespace crud_op
 {
     internal class Task
     {
-        public string Title { get; set; }
-        public string Description { get; set; }
+        public string Title { get; set; } // Property to store task title
+        public string Description { get; set; } // Property to store task description
     }
 
     internal class Program
@@ -19,6 +19,7 @@ namespace crud_op
 
             while (!exit)
             {
+                // Displaying the menu options
                 Console.WriteLine("Select the task:");
                 Console.WriteLine("1. Create a task");
                 Console.WriteLine("2. Read tasks");
@@ -27,22 +28,22 @@ namespace crud_op
                 Console.WriteLine("5. Exit");
 
                 Console.Write("Enter your choice (1-5): ");
-                int choice = Convert.ToInt32(Console.ReadLine());
+                int choice = Convert.ToInt32(Console.ReadLine()); // Reading user choice
 
                 switch (choice)
                 {
-                    case 1:
+                    case 1: // Creating a task
                         Console.Write("Enter task title: ");
                         string title = Console.ReadLine();
-
+                        
                         Console.Write("Enter task description: ");
                         string description = Console.ReadLine();
 
-                        tasks.Add(new Task { Title = title, Description = description });
+                        tasks.Add(new Task { Title = title, Description = description }); // Adding a new task to the list
                         Console.WriteLine("Task created successfully!");
                         break;
 
-                    case 2:
+                    case 2: // Reading tasks
                         if (tasks.Count == 0)
                         {
                             Console.WriteLine("No tasks available.");
@@ -52,12 +53,12 @@ namespace crud_op
                             Console.WriteLine("List of tasks:");
                             foreach (var task in tasks)
                             {
-                                Console.WriteLine($"Title: {task.Title}, Description: {task.Description}");
+                                Console.WriteLine($"Title: {task.Title}, Description: {task.Description}"); // Displaying title and description of each task
                             }
                         }
                         break;
 
-                    case 3:
+                    case 3: // Updating a task
                         if (tasks.Count == 0)
                         {
                             Console.WriteLine("No tasks available to update.");
@@ -67,21 +68,22 @@ namespace crud_op
                             Console.WriteLine("List of tasks:");
                             for (int i = 0; i < tasks.Count; i++)
                             {
-                                Console.WriteLine($"{i + 1}. Title: {tasks[i].Title}, Description: {tasks[i].Description}");
+                                Console.WriteLine($"{i + 1}. Title: {tasks[i].Title}, Description: {tasks[i].Description}"); // Displaying tasks with their indices
                             }
 
                             Console.Write("Enter the index of the task to update: ");
-                            int updateIndex = Convert.ToInt32(Console.ReadLine()) - 1;
+                            int updateIndex = Convert.ToInt32(Console.ReadLine()) - 1; // Reading index of the task to update
 
                             if (updateIndex >= 0 && updateIndex < tasks.Count)
                             {
                                 Console.Write("Enter new task title: ");
                                 string newTitle = Console.ReadLine();
+                                
                                 Console.Write("Enter new task description: ");
                                 string newDescription = Console.ReadLine();
 
-                                tasks[updateIndex].Title = newTitle;
-                                tasks[updateIndex].Description = newDescription;
+                                tasks[updateIndex].Title = newTitle; // Updating task title
+                                tasks[updateIndex].Description = newDescription; // Updating task description
 
                                 Console.WriteLine("Task updated successfully!");
                             }
@@ -92,7 +94,7 @@ namespace crud_op
                         }
                         break;
 
-                    case 4:
+                    case 4: // Deleting a task
                         if (tasks.Count == 0)
                         {
                             Console.WriteLine("No tasks available to delete.");
@@ -102,15 +104,15 @@ namespace crud_op
                             Console.WriteLine("List of tasks:");
                             for (int i = 0; i < tasks.Count; i++)
                             {
-                                Console.WriteLine($"{i + 1}. Title: {tasks[i].Title}, Description: {tasks[i].Description}");
+                                Console.WriteLine($"{i + 1}. Title: {tasks[i].Title}, Description: {tasks[i].Description}"); // Displaying tasks with their indices
                             }
 
                             Console.Write("Enter the index of the task to delete: ");
-                            int deleteIndex = Convert.ToInt32(Console.ReadLine()) - 1;
+                            int deleteIndex = Convert.ToInt32(Console.ReadLine()) - 1; // Reading index of the task to delete
 
                             if (deleteIndex >= 0 && deleteIndex < tasks.Count)
                             {
-                                tasks.RemoveAt(deleteIndex);
+                                tasks.RemoveAt(deleteIndex); // Removing task at the specified index
                                 Console.WriteLine("Task deleted successfully!");
                             }
                             else
@@ -120,12 +122,12 @@ namespace crud_op
                         }
                         break;
 
-                    case 5:
+                    case 5: // Exiting the application
                         exit = true;
                         Console.WriteLine("Exiting the application.");
                         break;
 
-                    default:
+                    default: // Handling invalid choice
                         Console.WriteLine("Invalid choice. Please enter a number between 1 and 5.");
                         break;
                 }
